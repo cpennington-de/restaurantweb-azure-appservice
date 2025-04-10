@@ -68,4 +68,4 @@ jobs:
         with:
           app-name: 'ResterauntWebApp-cpennington'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AA0E01EE12B84CB59D58B88023A8D4A4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_538395A941F14B3D8A283692811122A5 }}
