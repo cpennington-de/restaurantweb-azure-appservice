@@ -26,17 +26,18 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Configure Postgres database based on connection string of the libpq Keyword/Value form
-# https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
-conn_str = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
-conn_str_params = {pair.split('=')[0]: pair.split('=')[1] for pair in conn_str.split(' ')}
+# SECRET_KEY
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+# DATABASE CONFIGURATION
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': conn_str_params['dbname'],
-        'HOST': conn_str_params['host'],
-        'USER': conn_str_params['user'],
-        'PASSWORD': conn_str_params['password'],
+        'NAME': os.environ.get('AZURE_POSTGRESQL_NAME'),
+        'USER': os.environ.get('AZURE_POSTGRESQL_USER'),
+        'PASSWORD': os.environ.get('AZURE_POSTGRESQL_PASSWORD'),
+        'HOST': os.environ.get('AZURE_POSTGRESQL_HOST'),
+        'PORT': '5432',  # Default PostgreSQL port, update if custom
     }
 }
 
